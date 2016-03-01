@@ -16,11 +16,10 @@ module Plucky
 
       # Public: Given a value returns it normalized for Mongo's sort option
       def call(value)
-        case value
-          when Array
-            value.compact.map { |v| normalized_sort_piece(v) }.flatten.reduce({}, :merge)
-          else
-            normalized_sort_piece(value)
+        if value.is_a? Array
+          value.compact.map { |v| normalized_sort_piece(v) }.flatten.reduce({}, :merge)
+        else
+          normalized_sort_piece(value)
         end
       end
 
@@ -30,9 +29,10 @@ module Plucky
           when SymbolOperator
             normalized_direction(value.field, value.operator)
           when String
-            value.split(',').map do |piece|
+            sort_array = value.split(',').map do |piece|
               normalized_direction(*piece.split(' '))
-            end.reduce({}, :merge)
+            end
+            sort_array.reduce({}, :merge)
           when Symbol
             normalized_direction(value)
           when Array

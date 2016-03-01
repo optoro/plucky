@@ -10,7 +10,7 @@ module Plucky
     # Private
     OptionKeys = Set[
       :select, :offset, :order,                         # MM
-      :skip, :limit, :sort, :hint, :snapshot,  # Ruby Driver
+      :fields, :skip, :limit, :sort, :hint, :snapshot,  # Ruby Driver
       :batch_size, :timeout, :max_scan, :return_key,    # Ruby Driver
       :show_disk_loc, :comment, :read,    # Ruby Driver
       :tag_sets, :acceptable_latency,                   # Ruby Driver

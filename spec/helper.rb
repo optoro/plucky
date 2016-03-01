@@ -18,7 +18,7 @@ Log = Logger.new(File.join(log_dir, 'test.log'))
 LogBuddy.init :logger => Log
 
 port = ENV.fetch "BOXEN_MONGODB_PORT", 27017
-CLIENT = Mongo::Client.new([ "127.0.0.1:#{port}"], :logger => Log, :db => 'test')
+CLIENT = Mongo::Client.new([ "127.0.0.1:#{port}"], :logger => Log, :database => 'test')
 
 RSpec.configure do |config|
   config.filter_run :focused => true
